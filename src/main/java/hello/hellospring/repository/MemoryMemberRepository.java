@@ -34,4 +34,8 @@ public class MemoryMemberRepository implements MemberRepository{
         // 반환 타입이 List이다. 실무에서는 List를 루프 돌리기에도 편하고 여러 이유로 List를 자주 쓴다.
         return new ArrayList<>(store.values());
     }
+
+    public void clearStore(){
+        store.clear();
+    }
 }

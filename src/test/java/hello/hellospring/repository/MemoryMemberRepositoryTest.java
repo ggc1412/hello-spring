@@ -2,7 +2,10 @@ package hello.hellospring.repository;
 
 import hello.hellospring.domain.Member;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -10,8 +13,13 @@ class MemoryMemberRepositoryTest {
 
     MemoryMemberRepository repository = new MemoryMemberRepository();
 
+    @AfterEach // 각각의 메서드가 끝날때마다 동작하는 메서드
+    public void afterEach(){
+        repository.clearStore();
+    }
+
     @Test
-    public  void save(){
+    public void save(){
         // Repository Save 메서드는 DB에 값을 저장하는 메서드
         // DB에 값을 저장하고 DB에서 저장한 값이 원래 값과 같은 지 확인한다.
         Member member = new Member();
@@ -33,7 +41,22 @@ class MemoryMemberRepositoryTest {
         member2.setName("spring2");
         repository.save(member2);
 
-        Member result = repository.findByName("spring1").get();
+        Member result = repository.findByName("spring2").get();
         assertThat(result).isEqualTo(member2);
+    }
+
+    @Test
+    public void findAll() {
+        Member member1 = new Member();
+        member1.setName("spring1");
+        repository.save(member1);
+
+        Member member2 = new Member();
+        member2.setName("spring2");
+        repository.save(member2);
+
+        List<Member> result = repository.findAll();
+
+        assertThat(result.size()).isEqualTo(2);
     }
 }
