@@ -5,7 +5,9 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
+import java.awt.*;
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -58,5 +60,16 @@ class MemoryMemberRepositoryTest {
         List<Member> result = repository.findAll();
 
         assertThat(result.size()).isEqualTo(2);
+    }
+
+    @Test
+    public void test(){
+        Member member1 = new Member();
+        member1.setName("spring1");
+        repository.save(member1);
+
+        Optional<Member> optionalMember = repository.findByName("spring1");
+//        System.out.println(optionalMember.orElse(null));
+        System.out.println(optionalMember.orElseThrow());
     }
 }

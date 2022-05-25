@@ -29,7 +29,7 @@ public class HelloController {
 
     @GetMapping("hello-api")
     @ResponseBody
-    public Hello helloAPi(@RequestParam("name") String name){
+    public Hello helloApi(@RequestParam("name") String name){
         Hello hello = new Hello();
         hello.setName(name);
         return hello;
