@@ -3,10 +3,12 @@ package hello.hellospring.service;
 import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+@Transactional
 public class MemberService {
     // Repository와 Domain을 활용하여 실제 비즈니스 로직을 작성
     // Repository는 CRUD에 충실한 네이밍
