@@ -1,5 +1,6 @@
 package hello.hellospring;
 
+import hello.hellospring.aop.TimeTraceAop;
 import hello.hellospring.repository.JpaMemberRepository;
 import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.service.MemberService;
@@ -35,6 +36,12 @@ public class SpringConfig {
     public MemberService memberService(){
         return new MemberService(memberRepository);
     }
+
+    @Bean
+    public TimeTraceAop timeTraceAop(){
+        return new TimeTraceAop();
+    }
+    // @Component로 빈에 등록할 수도 있지만, 일반적인 빈 객체가 아니기 때문에 등록하여 사용함을 명시적으로 보여주는 것이 좋다.
 
 //    @Bean
 //    public MemberRepository memberRepository(){
